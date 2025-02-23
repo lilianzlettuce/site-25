@@ -6,7 +6,6 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  mode: 'jit',
   theme: {
     fontFamily: {
       main: ['var(--font-space-grotesk)'],
@@ -21,34 +20,21 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'main-yellow': '#fbbf24',
+        'light-purple': '#F4BBFF',
         purple: '#C9A0DC',
-        dark: '#0a0a0a',
-        blue: {
-          discord: '#807cfc'
-        },
-        discord: {
-          light: '#9b98fa',
-          vibrant: '#5864f4',
-          deselected: '#404675',
-          'deselected-mention': '#c9cdfb'
-        },
-        yellow: {
-          'discord-role': '#ffff88'
-        },
+        'dark-purple': '#863FB6',
+        wisteria: '#BE83D4',
+        sunbeam: '#FBF3C9',
         amber: {
+          main: '#FDD34A',
           450: '#F8AF18',
           550: '#E78B09'
         },
         gray: {
           darker: '#0d0d0d',
           dark: '#1c1c1c',
-          discord: '#383c3c',
-          'discord-dark': '#303434',
-          'discord-darker': '#282424'
         },
-        gold: {
-          discord: '#f1c40f'
-        }
+        dark: '#0a0a0a',
       },
       boxShadow: {
         blocks: '8px 8px',
@@ -127,12 +113,6 @@ export default {
       'mfs': { paintOrder: 'markers fill stroke' },
       'msf': { paintOrder: 'markers stroke fill' },
     },
-  },
-  variants: {
-    textFillColor: ['responsive'],
-    textStrokeColor: ['responsive'],
-    textStrokeWidth: ['responsive'],
-    paintOrder: ['responsive'],
   },
   plugins: [],
 } satisfies Config;

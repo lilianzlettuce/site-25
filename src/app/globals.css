@@ -1,185 +1,106 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --btn-height: 15px;
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
 }
 
-/*@media (prefers-color-scheme: dark) {
+@utility btn-3d-push-flat-right {
+  @apply relative block box-border px-12 py-5 font-black text-black uppercase bg-sunbeam bottom-[var(--btn-height-md)]
+    transition duration-200 rotate-z-30 -rotate-y-15 rotate-x-55 perspective-origin-bottom-left
+    transition-[bottom] transform-3d perspective-[800px] cursor-pointer
+    before:content-[''] before:absolute before:block before:top-full before:left-0 before:w-full before:h-[var(--btn-height-md)] before:bg-light-purple before:-rotate-x-90 before:origin-[0_0] before:duration-200 
+    after:content-[''] after:absolute after:block after:left-full after:top-0 after:w-[var(--btn-height-md)] after:h-full after:bg-wisteria after:rotate-y-90 after:origin-[0_0] after:duration-200
+    active:bottom-0 active:before:h-0 active:after:w-0;
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+@utility footer-btn {
+  @apply relative w-40 h-20 sm:w-48 min-w-fit p-2 font-mono text-xl font-bold bg-white border-4 border-black border-solid rounded-xl shadow-footer-btn hover:shadow-none hover:top-2 leading-tight;
+}
+@utility email-btn {
+  @apply relative px-4 py-2 font-mono text-base font-bold bg-white border-2 border-black border-solid min-w-fit rounded-xs shadow-email-btn hover:shadow-none hover:top-1 hover:left-1 leading-tight;
+}
+@utility dark-action-btn {
+  @apply relative px-4 py-2 font-mono text-base font-bold bg-white border-2 border-black border-solid min-w-fit rounded-xs shadow-footer-btn hover:shadow-none hover:top-[6px] hover:left-[6px] leading-tight;
+}
+@utility spray-btn {
+  @apply relative px-3 py-1 font-mono text-sm font-bold text-white border-2 border-white border-solid min-w-fit hover:scale-110;
+}
+@utility hack-btn {
+  @apply w-48 h-20 px-2 py-2 font-mono font-bold bg-black border-4 border-white border-solid min-w-fit;
+}
+
+@utility sponsor-overflow {
+  position: relative;
+  left: -80px;
+  width: calc(100% + 160px);
+  @media print {
+    position: static;
+    left: 0;
+    width: auto;
+  }
+}
+
+@utility page-break {
+  display: none;
+  @media print {
+    display: block;
+    visibility: hidden;
+    break-before: page;
+  }
+}
+
+@layer utilities {
+  :root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --btn-height-md: 15px;
+
+    --cube-md: 16px;
+    --cube-md: 200px;
+    --cube-md: 96px;
+  }
+
+  /*@media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 }*/
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+  body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+  }
 
-.text-stroke-3 {
-  -webkit-text-stroke: 3px black;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .text-stroke-3 {
+    -webkit-text-stroke: 3px black;
   }
 }
 
 @layer base {
-  .transform-3d {
-    transform-style: preserve-3d;
-  }
-  .translate-z-12 {
-    transform: translateZ(3rem);
-  }
-  .-translate-z-12 {
-    transform: translateZ(-3rem);
-  }
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-  
   body {
     @apply font-main;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
-  :not(.message *) > ::selection {
-    background: #fcd34d;
-  }
-}
-
-@layer components {
-  .footer-btn {
-    @apply relative w-40 h-20 sm:w-48 min-w-fit p-2 font-mono text-xl font-bold bg-white border-4 border-black border-solid rounded-xl shadow-footer-btn hover:shadow-none hover:top-2 leading-tight;
-  }
-  .email-btn {
-    @apply relative px-4 py-2 font-mono text-base font-bold bg-white border-2 border-black border-solid min-w-fit rounded-sm shadow-email-btn hover:shadow-none hover:top-1 hover:left-1 leading-tight;
-  }
-
-  .dark-action-btn {
-    @apply relative px-4 py-2 font-mono text-base font-bold bg-white border-2 border-black border-solid min-w-fit rounded-sm shadow-dark-action-btn hover:shadow-none hover:top-[6px] hover:left-[6px] leading-tight;
-  }
-  .spray-btn {
-    @apply relative px-3 py-1 font-mono text-sm font-bold text-white border-2 border-white border-solid min-w-fit hover:scale-110;
-  }
-  .hack-btn {
-    @apply w-48 h-20 px-2 py-2 font-mono font-bold bg-black border-4 border-white border-solid min-w-fit;
-  }
-  .channel-name {
-    @apply px-1 bg-discord-vibrant text-white hover:cursor-pointer rounded;
-  }
-  .no-ring {
-    @apply focus:ring-0 focus:ring-offset-0 focus:border-black !important;
-  }
-  .sponsor-overflow {
-    position: relative;
-    left: -80px;
-    width: calc(100% + 160px);
-  }
-  .page-break {
-    display: none;
-  }
-  @media print {
-    .sponsor-overflow {
-      position: static;
-      left: 0;
-      width: auto;
-    }
-    .page-break {
-      display: block;
-      visibility: hidden;
-      break-before: page;
-    }
-  }
-}
-
-.btn-51,
-.btn-51 *,
-.btn-51 :after,
-.btn-51 :before,
-.btn-51:after,
-.btn-51:before {
-  border: 0 solid;
-  box-sizing: border-box;
-}
-.btn-51 {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: button;
-  background-color: #000;
-  background-image: none;
-  color: #fff;
-  cursor: pointer;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 100%;
-  line-height: 1.5;
-  margin: 0;
-  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
-  padding: 0;
-}
-.btn-51:disabled {
-  cursor: default;
-}
-.btn-51:-moz-focusring {
-  outline: auto;
-}
-.btn-51 svg {
-  display: block;
-  vertical-align: middle;
-}
-.btn-51 [hidden] {
-  display: none;
-}
-.btn-51 {
-  --progress: 15px;
-  background: #fff;
-  bottom: var(--progress);
-  box-sizing: border-box;
-  color: #000;
-  display: block;
-  font-weight: 900;
-  -webkit-mask-image: none;
-  padding: 1.2rem 3rem;
-  perspective: 800px;
-  position: relative;
-  text-transform: uppercase;
-  transform: rotateX(55deg) rotate(25deg);
-  transform-style: preserve-3d;
-  transition: bottom 0.2s;
-}
-.btn-51:after,
-.btn-51:before {
-  content: "";
-  display: block;
-  position: absolute;
-  transform-origin: 0 0;
-}
-.btn-51:before {
-  background: #eee;
-  height: var(--progress);
-  left: 0;
-  top: 100%;
-  transform: rotateX(-90deg);
-  transition: height 0.2s;
-  width: 100%;
-}
-.btn-51:after {
-  background: #ccc;
-  height: 100%;
-  left: 100%;
-  top: 0;
-  transform: rotateY(90deg);
-  transition: width 0.2s;
-  width: var(--progress);
-}
-.btn-51:active {
-  --progress: 0px;
 }
