@@ -22,11 +22,22 @@
 
 @utility btn-3d-push-flat-right {
   @apply relative block box-border px-12 py-5 font-black text-black uppercase bg-sunbeam bottom-[var(--btn-height-md)]
-    transition duration-200 rotate-z-30 -rotate-y-15 rotate-x-55 perspective-origin-bottom-left
+    transition duration-200 rotate-z-30 -rotate-y-10 rotate-x-55 origin-[0_0]
     transition-[bottom] transform-3d perspective-[800px] cursor-pointer
     before:content-[''] before:absolute before:block before:top-full before:left-0 before:w-full before:h-[var(--btn-height-md)] before:bg-light-purple before:-rotate-x-90 before:origin-[0_0] before:duration-200 
     after:content-[''] after:absolute after:block after:left-full after:top-0 after:w-[var(--btn-height-md)] after:h-full after:bg-wisteria after:rotate-y-90 after:origin-[0_0] after:duration-200
     active:bottom-0 active:before:h-0 active:after:w-0;
+}
+@utility floor-3d-flat-right {
+  @apply relative block box-border px-12 py-5 font-black text-black uppercase bg-sunbeam bottom-[var(--floor-height-md)]
+    transition duration-200 rotate-z-35 -rotate-y-15 rotate-x-55 origin-[0_0]
+    transition-[bottom] transform-3d perspective-[800px]
+    before:content-[''] before:absolute before:block before:top-full before:left-0 before:w-full before:h-[var(--floor-height-md)] before:bg-light-purple before:-rotate-x-90 before:origin-[0_0] before:duration-200 
+    after:content-[''] after:absolute after:block after:left-full after:top-0 after:w-[var(--floor-height-md)] after:h-full after:bg-wisteria after:rotate-y-90 after:origin-[0_0] after:duration-200
+    active:bottom-0 active:before:h-0 active:after:w-0;
+}
+@utility border-3d {
+  @apply border-2 border-black before:border-2 before:border-black after:border-2 after:border-black;
 }
 
 @utility text-balance {
@@ -70,12 +81,23 @@
 
 @layer utilities {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
-    --btn-height-md: 15px;
+    --light-purple: #F4BBFF;
+    --purple: #C9A0DC;
+    --dark-purple: #863FB6;
+    --wisteria: #BE83D4;
+    --sunbeam: #FBF3C9;
+    --amber: #FDD34A;
+    --amber-450: #F8AF18;
+    --amber-550: #E78B09;
 
-    --cube-md: 16px;
-    --cube-md: 200px;
+    --background: var(--sunbeam);
+    --foreground: #171717;
+
+    --btn-height-md: 15px;
+    --floor-height-md: 25px;
+
+    --cube-sm: 24px;
+    --cube-lg: 200px;
     --cube-md: 96px;
   }
 
@@ -90,6 +112,7 @@
     color: var(--foreground);
     background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
   }
 
   .text-stroke-3 {

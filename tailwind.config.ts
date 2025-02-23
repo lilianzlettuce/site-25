@@ -20,15 +20,15 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         'main-yellow': '#fbbf24',
-        'light-purple': '#F4BBFF',
-        purple: '#C9A0DC',
-        'dark-purple': '#863FB6',
-        wisteria: '#BE83D4',
-        sunbeam: '#FBF3C9',
+        'light-purple': 'var(--light-purple)',
+        purple: 'var(--purple)',
+        'dark-purple': 'var(--dark-purple)',
+        wisteria: 'var(--wisteria)',
+        sunbeam: 'var(--sunbeam)',
         amber: {
-          main: '#FDD34A',
-          450: '#F8AF18',
-          550: '#E78B09'
+          main: 'var(--amber)',
+          450: 'var(--amber-450)',
+          550: 'var(--amber-550)'
         },
         gray: {
           darker: '#0d0d0d',
