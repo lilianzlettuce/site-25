@@ -13,7 +13,7 @@ export default function Home() {
   const displays = [
     {
       message: "1 >>insert file here",
-      bg: "sunbeam",
+      bg: "amber-main",
       text: "black"
     },
     {
@@ -76,13 +76,14 @@ export default function Home() {
             </div>
 
             <div className="relative left-[45%] mx-[30px] w-fit h-full scale-200">
-              <div className="relative block scale-x-200 scale-y-100 hover:scale-x-250 hover:scale-y-150 hover:-rotate-x-10 hover:-rotate-y-15 m-[15px] size-20 transform-3d perspective-[500px] -rotate-x-20 -rotate-y-20 transition duration-600">
-                <div className="border-3d absolute p-3 flex items-center w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] translate-z-12 rotate-x-0 bg-purple-200/80">
-                  <div className="bg-red-500 text-green-200 text-white bg-sunbeam bg-purple"></div>
+              <div className="relative block scale-x-200 scale-y-100 m-[15px] size-20 transform-3d perspective-[300px] -rotate-x-20 -rotate-y-20 transition duration-600
+                  hover:scale-x-250 hover:scale-y-150 hover:-rotate-x-10 hover:-rotate-y-15">
+                <div className="border-2 absolute p-3 flex items-center w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] translate-z-12 rotate-x-0 bg-purple-200/80">
+                  <div className="bg-red-500 text-green-200 text-white bg-sunbeam bg-amber-main/80 bg-purple"></div>
                   <div className="w-full h-[90%]">
                     {displays.map((display, i) => {
                       return (
-                        <div key={i} className={`w-full h-full bg-${display.bg} text-wrap text-${display.text} ${currentDisplayNum != i && "hidden"}`}>
+                        <div key={i} className={`w-full h-full bg-${display.bg}/80 text-wrap text-${display.text} ${currentDisplayNum != i && "hidden"}`}>
                           {display.message}
                           {i == 2 && 
                             <button onClick={() => setCurrentDisplayNum(3)}
@@ -95,11 +96,26 @@ export default function Home() {
                     })}
                   </div>
                 </div>
-                <div className="absolute w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] -translate-z-12 rotate-y-0 bg-dark-purple text-transparent">2</div>
-                <div className="border-3d absolute w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] translate-x-12 rotate-y-90 bg-wisteria text-transparent">3</div>
-                <div className="absolute w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] -translate-x-12 -rotate-y-90 bg-wisteria text-transparent">4</div>
-                <div className="border-3d absolute w-[var(--cube-md)] h-[var(--cube-md)] -translate-y-12 rotate-x-90 bg-light-purple text-transparent">5</div>
-                <div className="absolute w-[var(--cube-md)] h-[var(--cube-md)] translate-y-12 -rotate-x-90 bg-wisteria text-transparent">6</div>
+                <div className="absolute w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] -translate-z-12 rotate-y-0 bg-dark-purple/80 text-transparent">2</div>
+                <div className="border-2 absolute w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] translate-x-12 rotate-y-90 bg-wisteria/80 text-transparent">3</div>
+                <div className="absolute w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] -translate-x-12 -rotate-y-90 bg-wisteria/80 text-transparent">4</div>
+                <div className="border-2 absolute w-[var(--cube-md)] h-[var(--cube-md)] -translate-y-12 rotate-x-90 bg-light-purple/80 text-transparent">5</div>
+                <div className="absolute w-[var(--cube-md)] h-[var(--cube-md)] translate-y-12 -rotate-x-90 bg-wisteria/80 text-transparent">6</div>
+                
+                {[...Array(5)].map((_, i) => {
+                  return (
+                    <div className="border-1 absolute w-[var(--cube-md)] h-[var(--cube-md)] -translate-y-14 rotate-x-90 bg-light-purple/60 text-transparent"
+                          style={{ top: -i * 10 + 10, transform: `rotateX(${90}deg) rotateY(-${0}deg) translateX(${0}px)`, }}
+                          key={i}>5</div>
+                  );
+                })}
+                {[...Array(5)].map((_, i) => {
+                  return (
+                    <div className="border-2 absolute w-[var(--cube-md)] h-[calc(var(--cube-md)*3/2)] translate-x-12 rotate-y-90 bg-wisteria/80 text-transparent"
+                          style={{ left: -i * 10 + 10, transform: `rotateX(${0}deg) rotateY(-${90}deg) translateX(${0}px)`, }}
+                          key={i}>3</div>
+                  );
+                })}
               </div>
             </div>
           </div>
